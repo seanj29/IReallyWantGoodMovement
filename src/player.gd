@@ -61,7 +61,7 @@ func HandleMoment():
 	if Input.is_action_just_pressed("moment"):
 		if storedVelocity.is_equal_approx(Vector2.ZERO):
 			storedVelocity = get_real_velocity()
-			print("storing velocity")
+			print("Storing velocity %s" % storedVelocity)
 			velocity = Vector2.ZERO
 			disableGravityAndMovement()
 			print("disabling gravity + movement for little while")
@@ -70,6 +70,9 @@ func HandleMoment():
 		else:
 			disableGravityAndMovement()
 			print("disabling gravity + movement for little while")
+			print("disabling gravity + movement for little while")
+			if velocity.y < 0:
+				storedVelocity.y -= velocity.y
 			velocity = storedVelocity
 			print("using stored velocity")
 			storedVelocity = Vector2.ZERO 
@@ -118,7 +121,6 @@ func Handlejump():
 			if is_on_wall() and wallJumpPossible:
 				WallJump(get_wall_normal().x)
 				wallJumpPossible = false
-				print(get_wall_normal())
 
 
 
